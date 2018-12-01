@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detalles de Persona</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      {{ currentPerson.name }} {{ currentPerson.lastName }}
+    </ion-card-header>
+    <ion-card-content>
+      CC: {{ currentPerson.cc }} <br>
+      Sexo: {{ (currentPerson.gender == 'male'? 'Hombre': 'Mujer') }} <br>
+      RH: {{ currentPerson.rh }} <br>
+      Enfermedad: {{ getSurgery(currentPerson.surgery) }} <br>
+      Accidente: {{ getAccident(currentPerson.accident) }} <br>
+      Nombre contacto en caso de emergencia: {{ currentPerson.contact_name }} <br>
+      Numero contacto en caso de emergencia: {{ currentPerson.contact_number }} <br>
+      Code: {{ currentPerson.code }}
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="currentPerson.code">
+      <ngx-qrcode
+        id="qrcode"
+        [qrc-value]="currentPerson.code"
+        qrc-class = "box-qr"
+        qrc-element-type=“img”
+      ></ngx-qrcode>
+  </div>
+
+  <button ion-button round (click)="donwloadQR()">Descargar QR</button>
+  <button ion-button round (click)="goBack()">Volver</button>
+
+</ion-content>
