@@ -1,0 +1,117 @@
+<!--
+  Generated template for the RegistrationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registro Personal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <div class="container-center container-logo">
+    <div class="center-div">
+      <img src="assets/imgs/logo_company.png" height="100" width="100">
+    </div>
+
+    <div class="center-div">
+      <img src="assets/imgs/empty_profile.jpg" height="130" width="130">
+    </div>
+  </div>
+
+  <div *ngIf="showForm">
+    <form (ngSubmit)="saveForm()" #registerForm="ngForm" class="">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              <ion-item>
+                <ion-input type="text" placeholder="Nombres" [(ngModel)]="form.name" name="name"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input type="text" placeholder="Apellidos" [(ngModel)]="form.lastName" name="lastName"></ion-input>
+              </ion-item>
+        
+              <ion-item>
+                <ion-input type="text" placeholder="C.C" [(ngModel)]="form.cc" name="cc"></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                <ion-input type="text" placeholder="RH" [(ngModel)]="form.rh" name="rh"></ion-input>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label>Genero</ion-label>
+                <ion-select [(ngModel)]="form.gender" name="gender">
+                  <ion-option value="male">Hombre</ion-option>
+                  <ion-option value="female">Mujer</ion-option>
+                </ion-select>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label>Enfermedades</ion-label>
+                <ion-select [(ngModel)]="form.surgery" name="surgery">
+                  <ion-option value="c1">Asma</ion-option>
+                  <ion-option value="c2">Diabetes</ion-option>
+                  <ion-option value="c3">Tensión Arterial</ion-option>
+                  <ion-option value="c4">Epilepsia</ion-option>
+                  <ion-option value="c5">No Aplica</ion-option>
+                </ion-select>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label>Accidentes</ion-label>
+                <ion-select [(ngModel)]="form.accident" name="accident">
+                  <ion-option value="a1">Caídas a nivel</ion-option>
+                  <ion-option value="a2">Caídas de altura</ion-option>
+                  <ion-option value="a3">Lesión Osteomuscular</ion-option>
+                  <ion-option value="a4">Fracturas</ion-option>
+                  <ion-option value="a5">No aplica</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-input type="text" placeholder="Nombre contacto en caso de emergencia" [(ngModel)]="form.contact_name" name="contact_name"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input type="text" placeholder="Numero contacto en caso de emergencia" [(ngModel)]="form.contact_number" name="contact_number"></ion-input>
+              </ion-item>
+
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Guardar</button>
+        </ion-row>
+
+      </form>
+  </div>
+
+  <div *ngIf="!showForm && currentCode != ''">
+    <div class="container-center container-qrcode">
+      <div class="center-div">
+
+        <div *ngIf="currentCode">
+          <ngx-qrcode
+            id="qrcode"
+            [qrc-value]="currentCode"
+            qrc-class = "box-qr"
+            qrc-element-type=“img” 
+          ></ngx-qrcode>
+        </div>
+
+        <div class="container-btn-close-qr">
+          <button ion-button class="" (click)="donwloadQR()">Descargar QR</button>
+          <button ion-button class="" (click)="closeQR()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
