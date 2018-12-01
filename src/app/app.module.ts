@@ -3,38 +3,57 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+
+import { RegistrationPage } from '../pages/registration/registration';
+import { ScannerPage } from '../pages/scanner/scanner';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { QRScanner } from '@ionic-native/qr-scanner';
+import { Dialogs } from '@ionic-native/dialogs';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { NativeAudio } from '@ionic-native/native-audio';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Diagnostic } from '@ionic-native/diagnostic';
+
+
+
+import { PersonServiceProvider } from '../providers/person-service/person-service';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    RegistrationPage,
+    ScannerPage,
     HomePage,
     TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    RegistrationPage,
+    ScannerPage,
     HomePage,
-    TabsPage
+    TabsPage,
   ],
   providers: [
     StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    QRScanner,
+    PersonServiceProvider,
+    NativeAudio,
+    Dialogs,
+    FileTransfer,
+    File,
+    Diagnostic
   ]
 })
 export class AppModule {}

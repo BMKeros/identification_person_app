@@ -1,5 +1,7 @@
 {
   "name": "identification_person_app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
